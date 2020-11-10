@@ -1,0 +1,30 @@
+{
+  "name": "mvc_pattern",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "babel src -d lib & node lib/app.js",
+    "lint": "eslint src/**/*"
+  },
+  "author": "NGowthamKumar",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/polyfill": "^7.12.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.10.13"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.12.1",
+    "@babel/core": "^7.12.3",
+    "@babel/preset-env": "^7.12.1",
+    "eslint": "^7.13.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-standard": "^16.0.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1"
+  }
+}
