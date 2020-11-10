@@ -12,6 +12,7 @@
     },
     "rules": {
         "max-len": ["error", { "code": 800 }],
+        "new-cap": ["error", { "capIsNew": false }],
         "require-jsdoc": ["error", {
             "require": {
                 "FunctionDeclaration": true,

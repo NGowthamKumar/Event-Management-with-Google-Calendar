@@ -8,9 +8,9 @@ import * as constants from '../../constants/constants';
  */
 export const createEvent = async (req, res) =>{
   try {
-    const result = await Event.add_event(req.body);
-    res.status(200).json({[constants.Add_event_success]: result});
+    const result = await Event.addEvent(req.body);
+    res.status(200).json({[constants.AddEventSuccess]: result});
   } catch (e) {
-    res.status(500).json({[constants.Add_event_error]: e});
+    res.status(500).json({[constants.AddEventError]: e});
   }
 };
