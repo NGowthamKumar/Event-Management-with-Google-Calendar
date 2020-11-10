@@ -1,6 +1,5 @@
 import * as Event from '../../model/eventModel';
 import * as constants from '../../constants/constants';
-
 /**
  * Create event
  * @param {*} req

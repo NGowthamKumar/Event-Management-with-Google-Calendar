@@ -1,6 +1,5 @@
 import * as User from '../../model/userModel';
 import * as constants from '../../constants/constants';
-
 /**
  *
  * @param {*} req
