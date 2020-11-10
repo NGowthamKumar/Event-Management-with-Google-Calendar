@@ -1,4 +1,5 @@
 import * as User from '../../model/userModel';
+import * as constants from '../../constants/constants';
 
 /**
  *
@@ -8,8 +9,8 @@ import * as User from '../../model/userModel';
 export const createUser = async (req, res) =>{
   try {
     const result = await User.add_user(req.body);
-    res.status(200).json({'user added': result});
+    res.status(200).json({[constants.AddUserSuccess]: result});
   } catch (e) {
-    res.status(500).json({'error in adding user': e});
+    res.status(500).json({[constants.AddUserError]: e});
   }
 };
