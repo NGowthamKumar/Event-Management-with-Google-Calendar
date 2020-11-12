@@ -1,7 +1,16 @@
 const mongoose = require('mongoose');
+
 import {mongodbSuccess, mongodbError} from '../constants/constants';
 
-mongoose.connect(process.env.MONGO_DB, process.env.MONGO_JSON, function(err) {
-  if (err) console.log(mongodbError);
-  else console.log(mongodbSuccess);
+
+mongoose.connect(process.env.MONGO_DB, {'useUnifiedTopology': true, 'useNewUrlParser': true});
+
+const db = mongoose.connection;
+
+db.on('error', ()=>{
+  console.error(mongodbError);
 });
+db.once('open', function() {
+  console.log(mongodbSuccess);
+});
+
