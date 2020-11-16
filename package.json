@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "nyc --reporter=text mocha",
     "build": "babel src -d lib --source-maps",
     "start": "babel src -d lib & node lib/app.js",
     "lint": "eslint src/**/*"
@@ -17,10 +17,17 @@
     "chai-http": "^4.3.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-clean": "^0.4.0",
+    "gulp-uglify": "^3.0.2",
+    "gulp-uglify-es": "^2.0.0",
+    "mongodb-memory-server": "^6.9.2",
     "mongoose": "^5.10.13",
     "mongoose-paginate-v2": "^1.3.11",
     "mongoose-type-email": "^1.0.13",
-    "nodemailer": "^6.4.15"
+    "nodemailer": "^6.4.15",
+    "nyc": "^15.1.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.1",
