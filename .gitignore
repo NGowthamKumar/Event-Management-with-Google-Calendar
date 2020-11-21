@@ -1,5 +1,5 @@
 node_modules/
 lib/
 dist/
-src/constants/credentials.json
+src/constants/credentials.json/
 .env
