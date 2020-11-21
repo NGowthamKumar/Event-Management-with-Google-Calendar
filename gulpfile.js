@@ -2,6 +2,7 @@ const gulp = require('gulp');
 const cleanFolder = require('gulp-clean');
 const uglify = require('gulp-uglify-es').default;
 const babel = require('gulp-babel');
+const exec = require('child_process').exec;
 /**
  * To clean the dist folder
  * @param {*} callback
@@ -32,10 +33,25 @@ function createDist(callback) {
           ],
         ],
       }))
-      .pipe(gulp.dest('dist'))
-      .pipe(uglify())
       .pipe(gulp.dest('dist'));
+  // .pipe(uglify())
+  // .pipe(gulp.dest('dist'));
   callback();
 }
 
-exports.default = gulp.series(cleanDist, createDist);
+/**
+ * Running Node server after compilaion
+ *
+ * @param {Function} callback
+ */
+function runNodeServer(callback) {
+  console.log('asdasd');
+  exec('node lib/app.js', (err, data)=>{
+    console.log(err);
+    console.log(data);
+    console.log('dataerr');
+  });
+  callback();
+}
+
+exports.default = gulp.series(cleanDist, createDist, runNodeServer);

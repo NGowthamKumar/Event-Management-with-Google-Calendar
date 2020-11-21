@@ -4,11 +4,14 @@ const mongoosePaginate = require('mongoose-paginate-v2');
 
 
 const EventSchema = new mongoose.Schema({
-  event_name: {type: String, required: true},
-  event_description: {type: String, required: true},
-  event_members: [{type: mongoose.SchemaTypes.Email, required: true}],
-  event_duration: {type: Number, required: true},
-  event_date: {type: Date, required: true},
+  GoogleEventId: {type: String},
+  summary: {type: String, required: true},
+  location: {type: String},
+  description: {type: String, required: true},
+  attendees: [{type: mongoose.SchemaTypes.Email, required: true}],
+  event_duration: {type: Number},
+  start: {dateTime: {type: String, required: true}, timeZone: {type: String, required: true}},
+  end: {dateTime: {type: String, required: true}, timeZone: {type: String, required: true}},
 },
 {versionKey: false},
 );

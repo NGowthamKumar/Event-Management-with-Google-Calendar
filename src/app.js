@@ -1,7 +1,8 @@
-import {initDatabase} from './config/mongoose';
+const express = require('express');
+const {initDatabase} = require('./config/mongoose');
 require('dotenv').config();
 initDatabase();
-const express = require('express');
+
 const app = express();
 
 app.use(express.urlencoded({extended: true}));

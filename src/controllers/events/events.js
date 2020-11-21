@@ -1,7 +1,11 @@
 import * as Event from '../../model/eventModel';
 import * as constants from '../../constants/constants';
+// import {googleEvent} from '../../helpers/eventFormat';
 const ObjectId = require('mongoose').Types.ObjectId;
+// const {google} = require('googleapis');
+// const calendar = google.calendar({version: 'v3', auth});
 // import {sendMail} from '../../services/mail';
+import {GoogleCalendar} from '../../services/googleCalendar.service';
 
 /**
  * To Create a single event
@@ -10,18 +14,17 @@ const ObjectId = require('mongoose').Types.ObjectId;
  */
 export const createEvent = async (req, res) =>{
   try {
-    /* req.body.event_members.forEach((email) => {
-      if (!constants.emailValidate.test(email)) {
-        throw {
-      }
-    }); */
-    const result = await Event.addEvent(req.body);
+    const obj = new GoogleCalendar();
+    const createResponse = await obj.CreateGoogleEvent(req.body);
+    req.body.GoogleEventId = createResponse.data.id;
+    await Event.addEvent(req.body);
     // sendMail(req.body.event_members);
-    res.status(constants.statusSuccess).json({[constants.AddEventSuccess]: result});
+    res.status(constants.statusSuccess).json({[constants.AddEventSuccess]: createResponse});
   } catch (e) {
     res.status(constants.statusError).json({[constants.AddEventError]: e});
   }
 };
+
 
 /**
  * To update an event
@@ -30,11 +33,14 @@ export const createEvent = async (req, res) =>{
  */
 export const updateEvent = async (req, res) => {
   try {
-    if (!((req.body.hasOwnProperty('_id')) && (ObjectId.isValid(req.body._id)))) {
-      throw new Error(constants.idError);
-    }
-    const result = await Event.modifyEvent(req.body);
-    res.status(constants.statusSuccess).json({[constants.UpdateEventSuccess]: result});
+    const EventMongodbId = req.body._id;
+    const event = await Event.eventDetails(EventMongodbId);
+    req.body.GoogleEventId = event.GoogleEventId;
+    const obj = new GoogleCalendar();
+    const createResponse = await obj.updateEvent(req.body);
+    createResponse.data._id = EventMongodbId;
+    await Event.modifyEvent(createResponse.data);
+    res.status(constants.statusSuccess).json({[constants.UpdateEventSuccess]: createResponse});
   } catch (e) {
     res.status(constants.statusError).json({[constants.UpdateEventError]: e});
   }
@@ -78,9 +84,47 @@ export const getEvents = async (req, res) => {
  */
 export const deleteEvent = async (req, res) => {
   try {
-    const result = await Event.removeEvent(req.params._id);
-    res.status(constants.statusSuccess).json({[constants.DeleteEventSuccess]: result});
+    const EventMongodbId = req.params._id;
+    const event = await Event.eventDetails(EventMongodbId);
+    const obj = new GoogleCalendar();
+    const deleteResponse = await obj.deleteEvent(event.GoogleEventId);
+    await Event.removeEvent(EventMongodbId);
+    res.status(constants.statusSuccess).json({[constants.DeleteEventSuccess]: deleteResponse});
   } catch (e) {
     res.status(constants.statusError).json({[constants.DeleteEventError]: e});
   }
+};
+
+/**
+ * For testing
+ * @param {*} req
+ * @param {*} res
+ */
+export const test = async (req, res) => {
+  const obj = new GoogleCalendar();
+  let concentUrl = await obj.authorize();
+  if (concentUrl === 'A_GEN') {
+    concentUrl = '/v1/authSuccess';
+  }
+  res.redirect(concentUrl);
+  // response.end();
+  // res.json({message: 'done'});
+};
+
+/**
+ * auth success google callback
+ *
+ * @param {*} req
+ * @param {*} res
+ */
+export const authSuccessGoogle = async (req, res)=>{
+  const obj = new GoogleCalendar();
+  if (req?.query?.code) {
+    await obj.createAuth(req.query.code);
+    console.log(req.query);
+  }
+  obj.listEvents();
+  res.status(constants.statusSuccess).json({
+    messaege: 'done',
+  });
 };

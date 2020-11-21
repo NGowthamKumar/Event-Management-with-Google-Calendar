@@ -8,7 +8,9 @@ export const getConnectionUri = async () => {
   if (process.env.ENV === 'test') {
     const MongoMemoryObj= require('mongodb-memory-server');
     const mongod = new MongoMemoryObj.MongoMemoryServer();
-    return connectionUri = await mongod.getUri();
+    connectionUri = await mongod.getUri();
+    console.log(connectionUri);
+    return connectionUri;
   } else {
     return connectionUri;
   }
