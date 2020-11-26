@@ -10,8 +10,8 @@ app.use(express.json());
 
 const port = process.env.PORT || 3000;
 
-app.use('/v1', require('./controllers/events/index'));
-app.use('/v1', require('./controllers/users/index'));
+app.use('/event', require('./controllers/events/index'));
+app.use('/user', require('./controllers/users/index'));
 
 
 app.listen((port), () => {

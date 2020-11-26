@@ -58,7 +58,7 @@ export class GoogleCalendar {
       access_type: 'offline',
       scope: SCOPES,
     });
-    console.log('Authorize this app by visiting this url:', authUrl);
+    // console.log('Authorize this app by visiting this url:', authUrl);
     callback(authUrl);
   }
 
@@ -110,7 +110,7 @@ export class GoogleCalendar {
   /**
  * To create an event in google calender
  * @param {Object} event
- * @return {romise}
+ * @return {Promise}
  */
   CreateGoogleEvent(event) {
     const Eventt = {...event, ...googleEvent};
@@ -133,8 +133,7 @@ export class GoogleCalendar {
    * @return {Promise}
    */
   updateEvent(event) {
-    console.log(event);
-    const EventId = event.id;
+    const EventId = event.GoogleEventId;
     const calendar = google.calendar({version: 'v3', auth: GoogleCalendar.oAuth2Client});
     return new Promise((resolve, reject) => {
       calendar.events.update({

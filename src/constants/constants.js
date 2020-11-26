@@ -1,5 +1,5 @@
 const statusSuccess = 200;
-const statusError = 500;
+const serverError = 500;
 const clientError = 400;
 const idError = 'Event id required';
 const ReadEventError = 'Can\'t get the event details';
@@ -20,5 +20,9 @@ const DeleteEventError = 'Can\'t delete Event';
 const emailValidate = new RegExp('[a-zA-Z0-9.!#$%&\'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)');
 const TOKEN_PATH = `${__dirname}/token.json`;
 const SCOPES = ['https://www.googleapis.com/auth/calendar.events'];
+const UserLoginSuccess = 'Login_successfull';
+const UserLoginError = 'Login_error';
+const UserRegisterSuccess = 'Registered_successfully';
+const UserRegisterError = 'Registering_error';
 
-module.exports = {SCOPES, TOKEN_PATH, idError, ReadEventError, ReadEventSuccess, clientError, emailValidate, statusSuccess, statusError, mongodbSuccess, mongodbError, AddEventError, AddEventSuccess, AddUserSuccess, AddUserError, UpdateEventSuccess, UpdateEventError, GetEventsSuccess, GetEventsError, DeleteEventSuccess, DeleteEventError};
+module.exports = {UserRegisterError, UserRegisterSuccess, UserLoginError, UserLoginSuccess, SCOPES, TOKEN_PATH, idError, ReadEventError, ReadEventSuccess, clientError, emailValidate, statusSuccess, serverError, mongodbSuccess, mongodbError, AddEventError, AddEventSuccess, AddUserSuccess, AddUserError, UpdateEventSuccess, UpdateEventError, GetEventsSuccess, GetEventsError, DeleteEventSuccess, DeleteEventError};
