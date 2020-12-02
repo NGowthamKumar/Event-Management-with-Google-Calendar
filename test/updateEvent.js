@@ -7,62 +7,71 @@ const testCases = [
   // positive test case
   {
     input: {
-      _id: '5facd438f202f37e3cd28dd5',
-      event_name: 'newww Event modified',
-      event_description: 'SampleDescription',
-      event_members: ['123@gmail', '456@gmail'],
-      event_date: '2019-5-23',
-      event_duration: 2,
+      '_id': '5fc73e8e28dc851ce4242aff',
+      'emailId': 'gowthamkumar21011999@gmail.com', // TeamLead/Manager mail
+      'summary': 'Tech modified Meeting',
+      'location': 'sparkout',
+      'description': 'To share tech news and daily events',
+      'attendees': ['gowthamkumar21011999@gmail.com', 'gowthamkumarnram@gmail.com'],
+      'event_duration': 2,
+      'start': {'dateTime': '2020-12-04T07:00:00+05:30', 'timeZone': 'Asia/Kolkata'},
+      'end': {'dateTime': '2020-12-05T10:00:00+05:30', 'timeZone': 'Asia/Kolkata'},
     },
     expectedStatus: 200,
-    expectedProperty: 'Event updated',
+    expectedProperty: 'Success',
+  },
+  {
+    input: {
+      '_id': '5fc73cb8a4e9431b1ed9018f',
+      'emailId': 'gowthamkumar21011999@gmail.com', // Not a TeamLead/Manager mail
+      'summary': 'Tech half Modified Meeting',
+      'location': 'Sparkout Tech Solutions',
+      'description': 'To Share Tech News and Daily Events',
+      'attendees': ['gowthamkumar21011999@gmail.com'],
+      'event_duration': 2,
+      'start': {'dateTime': '2020-12-07T08:00:00+05:30', 'timeZone': 'Asia/Kolkata'},
+      'end': {'dateTime': '2020-12-08T10:00:00+05:30', 'timeZone': 'Asia/Kolkata'},
+    },
+    expectedStatus: 200,
+    expectedProperty: 'Success',
   },
   {input: {
-    _id: '5facd438f202f37e3cd28dd5',
-    event_name: 'newww Event modified',
+    '_id': '5fc73e8e28dc851ce4242aff',
+    'emailId': 'gowtham@gmail.com', // Not a TeamLead/Manager mail
+    'summary': 'Tech modified Meeting',
+    'location': 'sparkout',
+    'description': 'To share tech news and daily events',
+    'attendees': ['gowthamkumar21011999@gmail.com', 'gowthamkumarnram@gmail.com'],
+    'event_duration': 2,
+    'start': {'dateTime': '2020-12-04T07:00:00+05:30', 'timeZone': 'Asia/Kolkata'},
+    'end': {'dateTime': '2020-12-05T10:00:00+05:30', 'timeZone': 'Asia/Kolkata'},
   },
-  expectedStatus: 200,
-  expectedProperty: 'Event updated'},
+  expectedStatus: 400,
+  expectedProperty: 'Client_error'},
 
   // negative test cases
   {
     input: {
-      event_name: 'gowtham',
-      event_description: 'description',
-      event_members: ['123', '456'],
-      event_date: 2020-12-12,
-      event_duration: 'duration',
+      '_id': 'wrongMongodbId',
+      'emailId': 'gowthamkumar21011999@gmail.com', // a TeamLead/Manager mail
+      'summary': 'Tech modified Meeting',
+      'location': 'sparkout',
+      'description': 'To share tech news and daily events',
+      'attendees': ['gowthamkumar21011999@gmail.com', 'gowthamkumarnram@gmail.com'],
+      'event_duration': 2,
+      'start': {'dateTime': '2020-12-04T07:00:00+05:30', 'timeZone': 'Asia/Kolkata'},
+      'end': {'dateTime': '2020-12-05T10:00:00+05:30', 'timeZone': 'Asia/Kolkata'},
     },
-    expectedStatus: 500,
-    expectedProperty: 'Can\'t update Event',
-  },
-  {
-    input: {
-      event_name: '123456789',
-      event_description: 'description',
-      event_members: ['123', '456'],
-      event_date: 2020-12-12,
-      event_duration: 'duration',
-    },
-    expectedStatus: 500,
-    expectedProperty: 'Can\'t update Event',
-  },
-  {
-    input: {
-      event_id: 'wrong one',
-      event_name: 'event1',
-      event_description: 'description',
-    },
-    expectedStatus: 500,
-    expectedProperty: 'Can\'t update Event',
+    expectedStatus: 400,
+    expectedProperty: 'Client_error',
   },
 ];
 
 describe('Mocha test', ()=>{
   testCases.forEach((cases)=>{
-    it(`Get user list ${JSON.stringify(cases)}`, (done)=>{
+    it(`To update an event ${JSON.stringify(cases)}`, (done)=>{
       chai.request('localhost:8000')
-          .put('/v1/updateEvent')
+          .put('/event/updateEvent')
           .send(cases.input)
           .end((err, res)=>{
             if (err) {

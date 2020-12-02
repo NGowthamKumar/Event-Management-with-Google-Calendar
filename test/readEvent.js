@@ -11,30 +11,30 @@ const testCases = [
 
     },
     expectedStatus: 200,
-    expectedProperty: 'got the event details',
+    expectedProperty: 'Success',
   },
   // negative test cases
   {
     input: {
       _id: 'gowtham',
     },
-    expectedStatus: 500,
-    expectedProperty: 'Can\'t get the event details',
+    expectedStatus: 400,
+    expectedProperty: 'Client_error',
   },
   {
     input: {
       _id: '123456789',
     },
-    expectedStatus: 500,
-    expectedProperty: 'Can\'t get the event details',
+    expectedStatus: 400,
+    expectedProperty: 'Client_error',
   },
 ];
 
 describe('Mocha test', ()=>{
   testCases.forEach((cases)=>{
-    it(`Get user list ${JSON.stringify(cases)}`, (done)=>{
+    it(`To get an event details ${JSON.stringify(cases)}`, (done)=>{
       chai.request('localhost:8000')
-          .get(`/v1/readEvent/${cases.input._id}`)
+          .get(`/event/readEvent/${cases.input._id}`)
           .end((err, res)=>{
             if (err) {
               console.log('error');

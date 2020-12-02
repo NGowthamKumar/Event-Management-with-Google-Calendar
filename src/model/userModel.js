@@ -6,7 +6,7 @@ import User from '../schema/userSchema';
  * @return {Promise}
  */
 export const login = (body) => {
-  return User.findOne({'name': body.name, 'password': body.password});
+  return User.findOne({'emailId': body.emailId, 'password': body.password});
 };
 
 /**
@@ -18,3 +18,13 @@ export const register = (body) =>{
   const user = new User(body);
   return user.save();
 };
+
+/**
+ * To show a single event details
+ * @param {String} emailId
+ * @return {promise}
+ */
+export const userDetail = (emailId) => {
+  return User.findOne({emailId});
+};
+

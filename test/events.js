@@ -11,7 +11,7 @@ const testCases = [
       'page': 2,
     },
     expectedStatus: 200,
-    expectedProperty: 'Got the event list',
+    expectedProperty: 'Success',
     expectedLimit: 2,
     expectedPage: 2,
   },
@@ -19,9 +19,9 @@ const testCases = [
 
 describe('Mocha test', ()=>{
   testCases.forEach((cases)=>{
-    it(`Get user list ${JSON.stringify(cases)}`, (done)=>{
+    it(`To get the events list ${JSON.stringify(cases)}`, (done)=>{
       chai.request('localhost:8000')
-          .get('/v1/events')
+          .get('/event/events')
           .query({'limit': cases.input.limit, 'page': cases.input.page})
           .end((err, res)=>{
             if (err) {

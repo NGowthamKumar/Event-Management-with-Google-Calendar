@@ -64,7 +64,6 @@ export class GoogleCalendar {
 
   /**
    * create auth after google oath completes ( token generation )
-   *
    * @param {String} code
    * @return {Promise}
    */
@@ -148,6 +147,7 @@ export class GoogleCalendar {
     });
   }
   /**
+   *
  * @param {String}googleId
  * @return {Object}
  */

@@ -7,42 +7,54 @@ const testCases = [
   // positive test case
   {
     input: {
-      event_name: 'SampleEvent',
-      event_description: 'SampleDescription',
-      event_members: ['123@gmail', '456@gmail'],
-      event_date: 2020-10-23,
-      event_duration: 2,
+      'emailId': 'gowthamkumar21011999@gmail.com', // its a TeamLead/Manager mail
+      'summary': 'Tech Meeting',
+      'location': 'sparkout',
+      'description': 'To share tech news and daily events',
+      'attendees': ['gowthamkumar21011999@gmail.com', 'gowthamkumarnram@gmail.com'],
+      'event_duration': 2,
+      'start': {'dateTime': '2020-12-04T07:00:00+05:30', 'timeZone': 'Asia/Kolkata'},
+      'end': {'dateTime': '2020-12-05T10:00:00+05:30', 'timeZone': 'Asia/Kolkata'},
     },
     expectedStatus: 200,
-    expectedProperty: 'Event added',
+    expectedProperty: 'Success',
   },
   // negative test cases
   {
     input: {
-      event_name: 'gowtham',
-      event_description: 'description',
-      event_members: ['123', '456'],
-      event_date: 2020-12-12,
-      event_duration: 'duration',
+      'emailId': 'gowtham@gmail.com', // Not a TeamLead/Manager mail
+      'summary': 'Tech Meeting',
+      'location': 'sparkout',
+      'description': 'To share tech news and daily events',
+      'attendees': ['gowthamkumar21011999@gmail.com', 'gowthamkumarnram@gmail.com'],
+      'event_duration': 2,
+      'start': {'dateTime': '2020-12-04T07:00:00+05:30', 'timeZone': 'Asia/Kolkata'},
+      'end': {'dateTime': '2020-12-05T10:00:00+05:30', 'timeZone': 'Asia/Kolkata'},
     },
-    expectedStatus: 500,
-    expectedProperty: 'Error in adding events',
+    expectedStatus: 400,
+    expectedProperty: 'Client_error',
   },
   {
     input: {
-      event_name: 'event1',
-      event_description: 'description',
+      'emailId': '2101com', // Wrong mail
+      'summary': 'Tech Meeting',
+      'location': 'sparkout',
+      'description': 'To share tech news and daily events',
+      'attendees': ['gowthamkumar21011999@gmail.com', 'gowthamkumarnram@gmail.com'],
+      'event_duration': 2,
+      'start': {'dateTime': '2020-12-04T07:00:00+05:30', 'timeZone': 'Asia/Kolkata'},
+      'end': {'dateTime': '2020-12-05T10:00:00+05:30', 'timeZone': 'Asia/Kolkata'},
     },
-    expectedStatus: 500,
-    expectedProperty: 'Error in adding events',
+    expectedStatus: 400,
+    expectedProperty: 'Client_error',
   },
 ];
 
 describe('Mocha test', ()=>{
   testCases.forEach((cases)=>{
-    it(`Get user list ${JSON.stringify(cases)}`, (done)=>{
+    it(`Create Event ${JSON.stringify(cases)}`, (done)=>{
       chai.request('localhost:8000')
-          .post('/v1/createEvent')
+          .post('/event/createEvent')
           .send(cases.input)
           .end((err, res)=>{
             if (err) {

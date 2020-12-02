@@ -7,34 +7,34 @@ const testCases = [
   // positive test case
   {
     input: {
-      _id: '5facf4f3d47c08915452a405',
+      _id: '5fb918870b6bb08d3d7ead27',
 
     },
     expectedStatus: 200,
-    expectedProperty: 'Event deleted',
+    expectedProperty: 'Success',
   },
   // negative test cases
   {
     input: {
       _id: 'gowtham',
     },
-    expectedStatus: 500,
-    expectedProperty: 'Can\'t delete Event',
+    expectedStatus: 400,
+    expectedProperty: 'Client_error',
   },
   {
     input: {
       _id: '123456789',
     },
-    expectedStatus: 500,
-    expectedProperty: 'Can\'t delete Event',
+    expectedStatus: 400,
+    expectedProperty: 'Client_error',
   },
 ];
 
 describe('Mocha test', ()=>{
   testCases.forEach((cases)=>{
-    it(`Get user list ${JSON.stringify(cases)}`, (done)=>{
+    it(`To delete the event ${JSON.stringify(cases)}`, (done)=>{
       chai.request('localhost:8000')
-          .delete(`/v1/deleteEvent/${cases.input._id}`)
+          .delete(`/event/deleteEvent/${cases.input._id}`)
           .end((err, res)=>{
             if (err) {
               console.log('error');

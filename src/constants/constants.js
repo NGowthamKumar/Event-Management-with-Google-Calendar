@@ -4,7 +4,7 @@ const clientError = 400;
 const idError = 'Event id required';
 const ReadEventError = 'Can\'t get the event details';
 const ReadEventSuccess = 'got the event details';
-
+const permissionError = 'Team_members_can\'t_create_an_event/meeting';
 const mongodbSuccess = 'Connected to MongoDB...';
 const mongodbError = 'Can\'t connect MongoDB';
 const AddEventError = 'Error in adding events';
@@ -20,9 +20,13 @@ const DeleteEventError = 'Can\'t delete Event';
 const emailValidate = new RegExp('[a-zA-Z0-9.!#$%&\'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)');
 const TOKEN_PATH = `${__dirname}/token.json`;
 const SCOPES = ['https://www.googleapis.com/auth/calendar.events'];
+const ObjectIdError = 'Mongodb Object Id is not valid';
+const UserReadSuccess = 'Got user details';
+const UserReadError = 'Can\'t get the user details';
 const UserLoginSuccess = 'Login_successfull';
 const UserLoginError = 'Login_error';
 const UserRegisterSuccess = 'Registered_successfully';
 const UserRegisterError = 'Registering_error';
+const UserEmailError = 'Invalid_Email_id';
 
-module.exports = {UserRegisterError, UserRegisterSuccess, UserLoginError, UserLoginSuccess, SCOPES, TOKEN_PATH, idError, ReadEventError, ReadEventSuccess, clientError, emailValidate, statusSuccess, serverError, mongodbSuccess, mongodbError, AddEventError, AddEventSuccess, AddUserSuccess, AddUserError, UpdateEventSuccess, UpdateEventError, GetEventsSuccess, GetEventsError, DeleteEventSuccess, DeleteEventError};
+module.exports = {ObjectIdError, UserReadSuccess, UserReadError, UserEmailError, permissionError, UserRegisterError, UserRegisterSuccess, UserLoginError, UserLoginSuccess, SCOPES, TOKEN_PATH, idError, ReadEventError, ReadEventSuccess, clientError, emailValidate, statusSuccess, serverError, mongodbSuccess, mongodbError, AddEventError, AddEventSuccess, AddUserSuccess, AddUserError, UpdateEventSuccess, UpdateEventError, GetEventsSuccess, GetEventsError, DeleteEventSuccess, DeleteEventError};
