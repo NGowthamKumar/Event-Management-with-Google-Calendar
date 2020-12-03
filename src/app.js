@@ -1,7 +1,10 @@
 const express = require('express');
+const helmet = require('helmet');
 const {initDatabase} = require('./config/mongoose');
 require('dotenv').config();
 initDatabase();
+
+app.use(helmet());
 
 const app = express();
 
