@@ -7,8 +7,8 @@ const testCases = [
   // positive test case
   {
     input: {
-      '_id': '5fc73e8e28dc851ce4242aff',
-      'emailId': 'gowthamkumar21011999@gmail.com', // TeamLead/Manager mail
+      '_id': '5fc8b00b05a41384cd968257',
+      'emailId': 'GowthamKumar@gmail.com', // TeamLead/Manager mail
       'summary': 'Tech modified Meeting',
       'location': 'sparkout',
       'description': 'To share tech news and daily events',
@@ -22,8 +22,8 @@ const testCases = [
   },
   {
     input: {
-      '_id': '5fc73cb8a4e9431b1ed9018f',
-      'emailId': 'gowthamkumar21011999@gmail.com', // Not a TeamLead/Manager mail
+      '_id': '5fc8b00b05a41384cd968257',
+      'emailId': 'GowthamKumar@gmail.com', // Not a TeamLead/Manager mail
       'summary': 'Tech half Modified Meeting',
       'location': 'Sparkout Tech Solutions',
       'description': 'To Share Tech News and Daily Events',

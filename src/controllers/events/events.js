@@ -45,13 +45,16 @@ export const createEvent = async (req, res) =>{
       // sendMail(req.body.attendees, `${req.body.summary}`, `${date[0]}`);
       logger.info('Event registered successfully');
       Response(res, constants.statusSuccess, constants.AddEventSuccess);
+      return;
     } else {
       logger.warn('Teammates can\'t create an event.');
       Response(res, constants.clientError, constants.permissionError);
+      return;
     }
   } catch (e) {
     logger.error('Error while registering Event');
     Response(res, constants.serverError, constants.AddEventError);
+    return;
   }
 };
 
@@ -76,9 +79,11 @@ export const updateEvent = async (req, res) => {
     await Event.modifyEvent(createResponse.data);
     logger.info('Event updated successfully');
     Response(res, constants.statusSuccess, constants.UpdateEventSuccess);
+    return;
   } catch (e) {
     logger.error('Error while updating an event');
     Response(res, constants.serverError, constants.UpdateEventError);
+    return;
   }
 };
 
@@ -96,9 +101,11 @@ export const readEvent = async (req, res) =>{
     const result = await Event.eventDetails(req.params._id);
     logger.info('Got the event details successfully');
     Response(res, constants.statusSuccess, result);
+    return;
   } catch (e) {
     logger.error('Error while getting he event details');
     Response(res, constants.serverError, constants.ReadEventError);
+    return;
   }
 };
 
@@ -114,9 +121,11 @@ export const getEvents = async (req, res) => {
     obj.listEvents();*/
     logger.info('Got the event list successfully');
     Response(res, constants.statusSuccess, constants.GetEventsSuccess);
+    return;
   } catch (e) {
     logger.error('Error while getting the event list');
     Response(res, constants.serverError, constants.GetEventsError);
+    return;
   }
 };
 

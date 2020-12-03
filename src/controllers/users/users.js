@@ -15,8 +15,10 @@ export const userLogin = async (req, res) =>{
     const result = await User.login(req.body);
     redisCache(result._doc.emailId, JSON.stringify(result._doc));
     Response(res, constants.statusSuccess, constants.UserLoginSuccess);
+    return;
   } catch (e) {
     Response(res, constants.serverError, constants.UserLoginError);
+    return;
   }
 };
 /**

@@ -7,7 +7,7 @@ const testCases = [
   // positive test case
   {
     input: {
-      'emailId': 'gowthamkumar21011999@gmail.com', // its a TeamLead/Manager mail
+      'emailId': 'GowthamKumar@gmail.com', // its a TeamLead/Manager mail
       'summary': 'Tech Meeting',
       'location': 'sparkout',
       'description': 'To share tech news and daily events',
