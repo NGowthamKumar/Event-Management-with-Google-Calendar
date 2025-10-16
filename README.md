@@ -1,4 +1,4 @@
-# Google Calendar Event Management (MVC)
+# Event Management with Google Calendar (MVC)
 
 A **Node.js MVC-based application** integrated with **Google Calendar API** to manage calendar events efficiently.  
 Supports **creating, updating, and deleting events**, along with **automated email notifications** using **Nodemailer** and **Liquid templates**.  
