@@ -25,7 +25,7 @@ This project follows the **Model–View–Controller (MVC)** architecture and in
 It provides RESTful endpoints for user and event operations with testing support using **Mocha** and **Chai**.  
 
 The system:
-- Manages event lifecycle — *Create, Read, Update, Delete (CRUD)*  
+- Manages event lifecycle - *Create, Read, Update, Delete (CRUD)*  
 - Syncs events with Google Calendar in real time  
 - Sends customized event notification emails to participants  
 - Uses structured logging for better monitoring  
@@ -66,38 +66,38 @@ The system:
 mvc/
 │
 ├─ src/
-│ ├─ config/ # Configurations (logger, middleware, router)
-│ ├─ constants/ # Static constants and credentials
-│ ├─ controllers/ # Request handlers
-│ │ ├─ events/ # Event operations
-│ │ │ ├─ events.js
-│ │ │ └─ index.js
-│ │ └─ users/ # User operations
-│ │ ├─ users.js
-│ │ └─ index.js
-│ ├─ helpers/ # Utility and helper functions
-│ │ └─ eventFormat.js
-│ ├─ model/ # MongoDB data models
-│ │ ├─ eventModel.js
-│ │ └─ userModel.js
-│ ├─ schema/ # Mongoose schemas
-│ ├─ services/ # External integrations
-│ │ ├─ googleCalendar.service.js
-│ │ ├─ mail.js
-│ │ └─ emailTemplate.liquid
-│ └─ index.js # App entry point
+│   ├─ config/                      # Configurations (logger, middleware, router)
+│   ├─ constants/                   # Static constants and credentials
+│   ├─ controllers/                 # Request handlers
+│   │   ├─ events/                  # Event operations
+│   │   │   ├─ events.js
+│   │   │   └─ index.js
+│   │   └─ users/                   # User operations
+│   │       ├─ users.js
+│   │       └─ index.js
+│   ├─ helpers/                     # Utility and helper functions
+│   │   └─ eventFormat.js
+│   ├─ model/                       # MongoDB data models
+│   │   ├─ eventModel.js
+│   │   └─ userModel.js
+│   ├─ schema/                      # Mongoose schemas
+│   ├─ services/                    # External integrations
+│   │   ├─ googleCalendar.service.js
+│   │   ├─ mail.js
+│   │   └─ emailTemplate.liquid
+│   └─ index.js                     # App entry point
 │
-├─ test/ # Mocha and Chai test cases
-│ ├─ createEvent.js
-│ ├─ deleteEvents.js
-│ ├─ events.js
-│ ├─ getEvent.js
-│ └─ updateEvent.js
+├─ test/                            # Mocha and Chai test cases
+│   ├─ createEvent.js
+│   ├─ deleteEvents.js
+│   ├─ events.js
+│   ├─ getEvent.js
+│   └─ updateEvent.js
 │
-├─ .eslintrc.json # Linter configuration
-├─ package.json # Project dependencies
-├─ babel.config.js # Babel transpilation config
-└─ gulpfile.js # Task automation setup
+├─ .eslintrc.json                   # ESLint configuration
+├─ package.json                     # Project dependencies
+├─ babel.config.js                  # Babel transpilation config
+└─ gulpfile.js                      # Task automation setup
 
 ```
 ---
