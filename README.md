@@ -66,38 +66,54 @@ The system:
 mvc/
 │
 ├─ src/
-│   ├─ config/                      # Configurations (logger, middleware, router)
-│   ├─ constants/                   # Static constants and credentials
-│   ├─ controllers/                 # Request handlers
-│   │   ├─ events/                  # Event operations
+│   ├─ config/                          # Core configurations and setup
+│   │   ├─ db.config.js                # Database connection setup
+│   │   ├─ logger.js                   # Winston logger configuration
+│   │   ├─ mongoose.js                 # Mongoose connection initialization
+│   │   ├─ responseMiddleware.js       # Unified API response handler
+│   │   └─ router.js                   # Express routing setup
+│   │
+│   ├─ constants/                      # Global constants and static values
+│   │   └─ constants.js
+│   │
+│   ├─ controllers/                    # Request handling controllers
+│   │   ├─ events/                     # Event management logic
 │   │   │   ├─ events.js
 │   │   │   └─ index.js
-│   │   └─ users/                   # User operations
+│   │   └─ users/                      # User login and registration logic
 │   │       ├─ users.js
 │   │       └─ index.js
-│   ├─ helpers/                     # Utility and helper functions
+│   │
+│   ├─ helpers/                        # Utility and helper functions
 │   │   └─ eventFormat.js
-│   ├─ model/                       # MongoDB data models
+│   │
+│   ├─ model/                          # Mongoose model interfaces
 │   │   ├─ eventModel.js
 │   │   └─ userModel.js
-│   ├─ schema/                      # Mongoose schemas
-│   ├─ services/                    # External integrations
-│   │   ├─ googleCalendar.service.js
-│   │   ├─ mail.js
-│   │   └─ emailTemplate.liquid
-│   └─ index.js                     # App entry point
+│   │
+│   ├─ schema/                         # MongoDB collection schemas
+│   │   ├─ eventSchema.js
+│   │   └─ userSchema.js
+│   │
+│   ├─ services/                       # External service integrations
+│   │   ├─ googleCalendar.service.js   # Google Calendar API integration
+│   │   ├─ mail.js                     # Email service using Nodemailer + Liquid
+│   │   └─ emailTemplate.liquid        # Dynamic email template
+│   │
+│   └─ index.js                        # Main app entry point
 │
-├─ test/                            # Mocha and Chai test cases
+├─ test/                               # Automated tests (Mocha + Chai)
 │   ├─ createEvent.js
 │   ├─ deleteEvents.js
 │   ├─ events.js
 │   ├─ getEvent.js
 │   └─ updateEvent.js
 │
-├─ .eslintrc.json                   # ESLint configuration
-├─ package.json                     # Project dependencies
-├─ babel.config.js                  # Babel transpilation config
-└─ gulpfile.js                      # Task automation setup
+├─ .eslintrc.json                      # Linter configuration
+├─ babel.config.js                     # Babel transpilation config
+├─ gulpfile.js                         # Task automation setup
+├─ package.json                        # Project dependencies
+└─ package-lock.json                   # Dependency lock file
 
 ```
 ---
